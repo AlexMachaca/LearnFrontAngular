@@ -1,0 +1,90 @@
+<div class="p-3">
+	<div class="card">
+		<div class="card-header">
+			Listar datos
+		</div>
+		<div class="card-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Apellido</th>
+						<th class="text-center">DNI</th>
+						<th class="text-center">Género</th>
+						<th class="text-center">Fecha de nacimiento</th>
+						<th class="text-end">Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					@for(item of listPerson; track $index) {
+					<tr>
+						<td>{{ item.firstName }}</td>
+						<td>{{ item.surName }}</td>
+						<td class="text-center">{{ item.dni }}</td>
+						<td class="text-center">{{ item.gender === true || item.gender === 'true' || item.gender === 'Masculino' ? 'Masculino' : 'Femenino' }}</td><!--item.gender=='true'?'Masculino' : 'Femenino' -->
+						<td class="text-center">{{ item.birthDate | date:'dd-MM-yyyy' }}</td>
+						<td class="text-end">
+							<button class="btn btn-danger btn-sm"
+								(click)="deletePerson(item.idPerson,$index)">Eliminar</button>
+							<button class="btn btn-secondary btn-sm"
+								(click)="showModal(modaEditPerson,$index)">Editar</button>
+						</td>
+					</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<ng-template #modaEditPerson>
+	<div class="modal-header">
+		<h4 class="modal-title pull-left">Modificar datos de persona</h4>
+	</div>
+	<div class="modal-body">
+		<form [formGroup]="frmEditPerson">
+			<div class="row">
+				<div class="col-md-6 mb-6">
+					<label for="" class="form-label">Nombre</label>
+					<input type="text" formControlName="firstName" class="form-control">
+				</div>
+				<div class="col-md-6 mb-6">
+					<label for="" class="form-label">Apellido</label>
+					<input type="text" formControlName="surName" class="form-control">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 mb-6">
+					<label for="" class="form-label">DNI</label>
+					<input type="text" formControlName="dni" class="form-control">
+				</div>
+				<div class="col-md-6 mb-6">
+					<label for="" class="form-label">Género</label>
+					<div class="radioGroup">
+						<label for="">
+							Masculino
+							<input type="radio" formControlName="gender" value="true">
+						</label>
+						<label for="">
+							Femenino
+							<input type="radio" formControlName="gender" value="false">
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 mb-6">
+					<label for="" class="form-label">Fecha de nacimiento</label>
+					<input type="date" formControlName="birthDate" class="form-control">
+				</div>
+			</div>
+		</form>
+	</div>
+	<hr>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-secondary" (click)="closeModal()">Cerrar modal</button>
+		<button class="btn btn-primary" (click)="onClickSaveChanges()">Guardar Cambios</button>
+	</div>
+</ng-template>
+
+

@@ -1,0 +1,31 @@
+.toastSuccess {
+	background-color: #38a899;
+}
+
+.toastSuccess > .toast-body {
+	color: #ffffff;
+}
+
+.toastWarning {
+	background-color: #badb29;
+}
+
+.toastWarning > .toast-body {
+	color: #000000;
+}
+
+.toastError {
+	background-color: #a73030;
+}
+
+.toastError > .toast-body {
+	color: #ffffff;
+}
+
+.toastException {
+	background-color: rgb(125, 17, 17);
+}
+
+.toastException > .toast-body {
+	color: #cccccc;
+}

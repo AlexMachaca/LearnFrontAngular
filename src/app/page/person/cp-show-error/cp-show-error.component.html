@@ -1,0 +1,9 @@
+<!--<div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>-->
+  @if (errorMessage){
+  <div class="error-message" style="color: red;font-size: 12px;font-weight: bold;">Este campo requerido
+  </div>}
+  @else if(errorPatron){
+    <div style="color: blue;font-size: 12px;font-weight: bold;">Formato Incorrecto</div>
+  }
